@@ -1,0 +1,55 @@
+{% extends 'index.html'%}
+{%load static%}
+
+{%block contenido%}
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {%for item in lista_campanias %}
+            <div class="col">
+                <div class="card h-100">
+                    <img src="{{item.imagen_campania.url}}" class="card-img-top" alt="..." height = '120px'>
+                    <div class="card-body">
+                        <h5 class="card-title">{{item.nombre_campania}}</h5>
+                        
+                        <p class="card-text ">{{item.descripcion_campania}}</p>
+                        <h6>
+                            {%for item_categoria in item.categoriasCampanias%} 
+                                <span class="badge bg-secondary">{{item_categoria}}</span>
+                            {%endfor%}
+                        </h6>
+                        {%if item.recaudacionCampania != 0%}
+                            <div class="row">
+                                <div class="col-8">
+                                    <h6>${{item.recaudacionCampania}} recaudado</h6>
+                                </div>
+                                <div class="col-4 text-align:right">
+                                    <h6>{{item.porcentajeRecaudacion}}%</h6>
+                                </div>                            
+                            </div>
+                            <div class="row">
+                                <div class = "col-12">
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: {{item.porcentajeRecaudacion}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                      </div>
+                                </div>
+                            </div>
+                        {%else%}
+                            <div class="row">
+                                <div class="col-8">
+                                    <h6>No se han registrado contribuciones</h6>
+                                </div>                            
+                            </div>
+                        {%endif%}
+                            <br>
+                        <div class="d-flex justify-content-between">                          
+                            <a class="btn btn-primary small" 
+                                href="{% url 'campanias_por_nombre' slug=item.slug%}">
+                                Ver</a>                  
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        {%endfor%}    
+    </div>
+{%endblock%}
+      

@@ -1,0 +1,81 @@
+{% extends 'index.html'%}
+{%load static%}
+
+
+{%block contenido%}
+    <div class="container">
+        
+        {%for campania in datos_campania %}
+        {{campania}}
+        <div>
+            <h1 class="text-center text-uppercase"> {{campania.nombre_campania}}</h1>
+            <h2 class="text-center">{{campania.usuarioCampania}}</h2>
+        </div>    
+        <div class="row">
+            <div class="col-sm-7">
+                <div>                
+                    <img src="../media/{{campania.imagen_campania}}" class="card-img-top" alt="imagen_{{campania.slug}}" height = '200px'>
+                </div>
+                <br>
+                
+                <spam>
+                    <h4> <b>Calendario:</b> </h4>
+                        <h6>Fecha inicio: {{campania.fecha_inicio}}</h6>
+                        <h6>Fecha finalizacion: {{campania.fecha_fin}}</h6>    
+                </spam>
+                <br>
+                <spam>
+                    <h4> <b>Total Recaudado: </b>{{campania.recaudacionCampania}} ({{campania.porcentajeRecaudacion}}%) </h4>
+                </spam>
+            </div>
+            <div class="col-sm-5">
+                <div>
+                    <div>
+                        
+                        <p>{{campania.descripcion_campania}}</p>
+                    </div>
+                    <div>
+                        <h3>${{campania.recaudacionCampania}}</h3>
+                    </div>
+                    <div>
+                        <div class="row">
+                            <div class="col-8">
+                                ${{campania.monto_objetivo}} meta
+                            </div>
+                            <div class="col-4">
+                                {{campania.diasRestantes}}
+                            </div>                            
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: {{campania.porcentajeRecaudacion}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-8">
+                                {{campania.porcentajeRecaudacion}}%
+                            </div>
+                            <div class="col-4">
+                                {{campania.conteoContribuyentes}} contribuyentes
+                            </div>                            
+                        </div>
+                    </div>
+
+                    <h4>Video</h4>
+                    <video width="320" height="240" controls>
+                        <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                {{csrf_token}}
+                <input id="aporte" type = ""></input>
+                <button class = "btn btn-secondary small" 
+                        onclick="addToCart('{{campania.id}}',
+                                            document.getElementById('aporte').value,
+                                            '{{csrf_token}}')" 
+                        {%if not user.is_authenticated%}
+                        disabled {%endif%}>Donar</button>
+            <div>
+        </div>
+        {%endfor%}
+    </div>
+    <script src = "{% static 'js/crowdfunding.js'%}"></script>
+{%endblock%}

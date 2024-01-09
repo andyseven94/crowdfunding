@@ -1,0 +1,122 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crowdfundig Site</title>
+    <meta name="description" content="Crownfunding web application">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+    <link rel="stylesheet" href="{%static 'css/cards.css' %}"/>
+    <link rel="shortcut icon" href="{%static 'img/favicon.png' %}" type="image/x-icon">
+</head>
+<body>
+    <div class="container-fluid">
+        <!-- Header -->
+        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+            <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+              <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
+            </a>
+      
+            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+              <li><a href="#" class="nav-link px-2 link-secondary">Home</a></li>
+              <li><a href="#" class="nav-link px-2 link-dark">Quiénes somos</a></li>
+              <li><a href="#" class="nav-link px-2 link-dark">FAQs</a></li>              
+            </ul>
+      
+            <div class="col-md-3 text-end">
+                {% if user.is_authenticated %}
+                    <a href = "#" class = 'nav-link nav-body-emphasis px-2'>Bienvenido {{user.username}}</a>
+                    <a href = "{% url 'logout' %}" class = "btn btn-outline-primary me-2">Logout</a>
+                    <a href = "{% url 'cart' %}" class = "btn btn-outline-primary me-2">
+                        <img src='{%static 'img/favicon.png'%}' width = "20" height = "20">
+                        <span id="cart-items-counter" class = "badge bg-primary ms1"> ${{count_cart_items}}</span>
+                    </a>
+                {%else%} 
+                   <a href="{% url 'signin' %}" class="btn btn-outline-primary me-2">Login</a>
+                    <a href="{% url 'signup' %}" class="btn btn-primary">Sign-up</a>
+                {%endif%} 
+            </div>
+        </header>
+
+        <!--Navegacion-->
+
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">Categorias</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    {%for item in categorias%}
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'campanias_por_categoria' categoria_id=item.id %}">{{item.nombre_categoria}}</a>
+                        </li>
+                    {%endfor%}
+                </ul>
+                <form class="d-flex" role="search">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+              </div>
+            </div>
+        </nav>
+        <!--Area de trabajo-->
+        <main class="my-5">
+
+            <!-- Hero -->
+            <div class="p-5 text-center bg-image rounded-3" style="
+            background-image: url('https://www.ieb.es/wp-content/uploads/2018/02/crowdfunding.jpg'); 
+            height: 200px">
+                <div class="d-flex justify-content-left align-items-center h-200">
+                    <div class="text-white">
+                        <h1 class="mb-3">Mi sitio de crowdfunding</h1>
+                        <h4 class="mb-3">Manos que dan... manos que reciben</h4>
+                    </div>
+                </div>
+            
+            </div>
+            <!-- Hero -->
+
+            <!--Contadores-->
+            <div class="container">
+                <div class="row justify-align-center">
+                    <div class="col-md-3">
+                        <div class="card-counter primary">
+                            <i class="fa fa-code-fork"></i>
+                            <span class="count-numbers">12</span>
+                            <span class="count-name">Flowz</span>
+                        </div>
+                    </div>
+                
+                    <div class="col-md-3">
+                        <div class="card-counter danger">
+                            <i class="fa fa-ticket"></i>
+                            <span class="count-numbers">599</span>
+                            <span class="count-name">Instances</span>
+                        </div>
+                    </div>
+                
+                    <div class="col-md-3">
+                        <div class="card-counter success">
+                            <i class="fa fa-database"></i>
+                            <span class="count-numbers">6875</span>
+                            <span class="count-name">Data</span>
+                        </div>
+                    </div>
+                <div>
+            <div>
+            <!--Fin Contadores-->
+            <br>
+
+            {%block contenido%}
+            {%endblock%}
+        </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</body>
+</html>
