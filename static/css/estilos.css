@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Source Sans Pro', sans-serif;
+   /*z-index: 10;*/
+}
+
+body{
+    background: #fff;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;  
+    width: 100%;
+    height: 80px;
+    background: #fff;
+    z-index: 10;
+    
+}
+
+.header-content{
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.logo{
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo h1 b{
+    color: #46a2fd;
+}
+
+a{
+    text-decoration: none;
+    /* color: inherit;  Para asegurarte de heredar el color del texto original */
+  }
+
+/*Estilos Menu*/
+
+.menu {
+    height: 80px;
+    
+}
+
+.menu nav{
+    height: 100%;
+}
+
+.menu nav ul{
+    height: 100%;
+    display: flex;
+    list-style: none;
+}
+
+.menu nav ul li{
+    height: 100%;
+    margin: 0px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; 
+}
+
+.menu-selectd:before{
+    content: '';
+    width: 100%;
+    height: 4px;
+    background: #46a2fd;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.menu nav ul li a{
+    color: #777777;
+    font-size: 18px;
+    transition: color 300ms;
+}
+
+.menu .text-menu-selected{
+    color: #46a2fd;
+}
+
+/*Revisar el hover*/
+.menu nav ul li a:hover{
+    color: #46a2fd;
+}
+
+/*Estilos Portada*/
+
+.container-cover{
+    width: 100%;
+    height: 500px;
+    position: relative;
+    margin-top: 80px;
+    background-image: url(../img/img8.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.container-cover:before{
+    content: '';
+    width: 100%;
+    height: 100%;
+    background:  rgba(38, 172, 255, 0.8);  
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.container-info-cover{
+    max-width: 800px;
+    height: 500px;
+    margin: auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.container-info-cover h1{
+    font-size: 60px;
+    font-weight: 500;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.container-info-cover p{
+    color: #fff;
+    font-size: 20px;
+    font-weight: 300;
+}
+
+/*Estilos Footer*/
+.container-footer footer {
+    text-align: center; /* Centrar el texto */
+}
+
+.container-footer footer h4 {
+    margin-bottom: 20px; /* Ajusta el margen si es necesario */
+}
+
+.container-footer footer .redes-footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.container-footer footer .redes-footer .icon-redes-footer {
+    font-size: 20px;
+    margin: 10px; /* Ajusta el margen si es necesario */
+    background: #efefef;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%; /* Usa 50% para un círculo perfecto */
+    color: #a2a2a2;
+}
+
+.container-footer footer hr{
+    margin-top: 20px;
+    border: none;
+    height: 2px;
+    background: #c0c0c07a;
+}
+
+hr {
+    border: none; /* Eliminar el borde predeterminado de la línea */
+    height: 3px; /* Altura de la línea */
+    background-color: #000; /* Color de la línea */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Estilo de sombra */
+    margin: 20px 0; /* Ajuste de margen superior e inferior */
+  }

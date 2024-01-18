@@ -2,11 +2,12 @@
 {%load static%}
 
 {%block contenido%}
-    <div class="row row-cols-1 row-cols-md-3 g-4">
+<!--Fin Contadores-->
+  <div class="row row-cols-1 row-cols-md-3 g-4">
         {%for item in lista_campanias %}
             <div class="col">
-                <div class="card h-100">
-                    <img src="{{item.imagen_campania.url}}" class="card-img-top" alt="..." height = '120px'>
+                <div class="card">
+                    <img src="{{item.imagen_campania.url}}" class="card-img-top" alt="" height = '120px'>
                     <div class="card-body">
                         <h5 class="card-title">{{item.nombre_campania}}</h5>
                         
@@ -41,15 +42,14 @@
                         {%endif%}
                             <br>
                         <div class="d-flex justify-content-between">                          
-                            <a class="btn btn-primary small" 
+                            <a class="btn btn-outline-primary small" 
                                 href="{% url 'campanias_por_nombre' slug=item.slug%}">
-                                Ver</a>                  
+                                Ver</a>   
                         </div>
                     </div>
                 </div>
             </div>
-            
-        {%endfor%}    
+        {%endfor%}
     </div>
-{%endblock%}
+   {%endblock%}
       
